@@ -1,6 +1,5 @@
-input = open('input/day1.txt', 'r')
-lines = input.readlines()
-numbers = [int(line) for line in lines]
+input = open('input/day1.txt', 'r').readlines()
+numbers = [int(line) for line in input]
 
 # O(n)
 def partOne(target=2020, numbers=numbers):
