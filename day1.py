@@ -1,11 +1,24 @@
 input = open('input/day1.txt', 'r')
 lines = input.readlines()
+numbers = [int(line) for line in lines]
 
-table = set()
-for line in lines:
-    num = int(line)
-    diff = 2020-num
-    if diff not in table:
-        table.add(num)
-    else:
-        print(diff, num, diff * num)
+# O(n)
+def partOne(target=2020, numbers=numbers):
+    table = set()
+    for num in numbers:
+        diff = target-num
+        if diff not in table:
+            table.add(num)
+        else:
+            return diff * num
+
+# O(n^2)
+def partTwo(target=2020, numbers=numbers):
+    for i, number in enumerate(numbers):
+        searchTarget = target-number
+        attempt = partOne(searchTarget, numbers[i:])
+        if attempt:
+            return attempt * number
+
+print("Part One:", partOne())
+print("Part Two:", partTwo())
